@@ -22,10 +22,7 @@ def nova_nota(anotação: Text):
     
     notas[nova_nota.id] = nova_nota
 
-    return {"id": nova_nota.id,
-            "data de criação": nova_nota.datetime_criação,
-            "data de modificação": nova_nota.datetime_modificação,
-            "anotação": nova_nota.anotação}
+    return nova_nota
 
 def atualizar_nota():
     pass
