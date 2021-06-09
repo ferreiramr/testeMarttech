@@ -20,3 +20,7 @@ class Nota(BaseModel):
             "anotação" : anotação
         }
         super().__init__(**dados_da_nota)
+
+    def atualizar(self, nova_anotação: Text) -> None:
+        self.datetime_modificação = datetime.now()
+        self.anotação = nova_anotação
