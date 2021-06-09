@@ -1,62 +1,56 @@
-from typing import Dict, Optional, Text
+from typing import Dict, Text
 from uuid import UUID
 from fastapi import FastAPI
+from notas import Notas
 from nota import Nota
 
 app = FastAPI()
 
-notas = {}
+notas = Notas()
+
 
 @app.get("/")
 def home():
     return {"Projeto": "Teste Martech",
-            "Autor" : "Marcos Ferreira",
-            "Situação do Projeto": "Impletamenta as funções para adicinar e listar notas"}
+            "Autor": "Marcos Ferreira",
+            "Situação do Projeto": "CRUD implementada"}
+
 
 @app.post("/notas/nova/{anotacao: Text}")
-def nova_nota(anotação: Text)->Nota:
+def nova(anotação: Text) -> Nota:
     """
     Adiciona uma nova nota
     """
-    nova_nota = Nota(anotação)
-    notas[nova_nota.id] = nova_nota
+    return notas.adicionar(anotação)
 
-    return nova_nota
 
 @app.put("/notas/atualizar/{id: UUID}")
-def atualizar_nota(id: UUID, nova_anotação: Text)->Nota:
+def atualizar(id: UUID, nova_anotação: Text) -> Nota:
     """
-    Atualiza a anotação de uma nota
+    Atualiza a anotação de uma nota à partir de seu UUID
     """
+    notas.atualizar(id, nova_anotação)
 
-    # TODD: IMPLEMENTAR EXEÇÃO PARA QUANDO A NOTA NÃO EXISTIR
-
-    notas[id].atualizar(nova_anotação)
-    return notas[id]
 
 @app.get("/notas/todas")
-def todas_as_notas()->Dict[Nota]:
+def todas() -> Dict[UUID, Nota]:
     """
     Exibe todas as notas
     """
-    return notas
+    return notas.listar()
+
 
 @app.get("/notas/nota/{id: UUID}")
-def nota_por_id(id:UUID)->Nota:
+def nota(id: UUID) -> Nota:
     """
-    Exibe uma nota a partir de seu UUID
+    Retorna uma nota a partir de seu UUID
     """
+    return notas.nota(id)
 
-    # TODD: IMPLEMENTAR EXEÇÃO PARA QUANDO A NOTA NÃO EXISTIR
-    
-    return notas[id]
 
 @app.delete("/nota/deletar/{id: UUID}")
-def deletar_nota(id:UUID):
+def deletar(id: UUID) -> Nota:
     """
     Deleta uma nota a partir de seu UUID
     """
-
-    # TODD: IMPLEMENTAR EXEÇÃO PARA QUANDO A NOTA NÃO EXISTIR
-
-    return notas.pop(id, None)
+    return notas.excluir(id)
