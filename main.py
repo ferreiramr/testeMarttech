@@ -1,6 +1,6 @@
 from typing import Dict, Text
 from uuid import UUID
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from notas import Notas
 from nota import Nota
 
@@ -13,7 +13,7 @@ notas = Notas()
 def home():
     return {"Projeto": "Teste Martech",
             "Autor": "Marcos Ferreira",
-            "Situação do Projeto": "CRUD implementada"}
+            "Situação do Projeto": "CRUD finalizada"}
 
 
 @app.post("/notas/nova/{anotacao: Text}")
@@ -29,7 +29,10 @@ def atualizar(id: UUID, nova_anotação: Text) -> Nota:
     """
     Atualiza a anotação de uma nota à partir de seu UUID
     """
-    notas.atualizar(id, nova_anotação)
+    if notas.existe(id):
+        return notas.atualizar(id, nova_anotação)
+    else:
+        return HTTPException(status_code=404, detail="Nota não localizada")
 
 
 @app.get("/notas/todas")
@@ -45,7 +48,10 @@ def nota(id: UUID) -> Nota:
     """
     Retorna uma nota a partir de seu UUID
     """
-    return notas.nota(id)
+    if notas.existe(id):
+        return notas.nota(id)
+    else:
+        return HTTPException(status_code=404, detail="Nota não localizada")
 
 
 @app.delete("/nota/deletar/{id: UUID}")
@@ -53,4 +59,7 @@ def deletar(id: UUID) -> Nota:
     """
     Deleta uma nota a partir de seu UUID
     """
-    return notas.excluir(id)
+    if notas.existe(id):
+        return notas.excluir(id)
+    else:
+        return HTTPException(status_code=404, detail="Nota não localizada")
