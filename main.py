@@ -1,3 +1,4 @@
+from pyexpat import ErrorString
 from typing import Dict, Text
 from uuid import UUID
 from fastapi import FastAPI, HTTPException, status
@@ -13,7 +14,7 @@ app = FastAPI(
 notas = Notas()
 
 
-@app.get("/",tags=["Descrição do Projeto"])
+@app.get("/", tags=["Descrição do Projeto"])
 def descricao_do_projeto():
     return {"Projeto": "Teste Martech",
             "Autor": "Marcos Ferreira",
@@ -26,10 +27,10 @@ def nova_nota(anotacao: Text) -> Nota:
     """
     View que adiciona uma nova nota
     """
-    try:
+    if len(anotacao) > 2000:
+        return HTTPException(status_code=402, detail="Tamanho máximo da anotação excedido, uma nota pode conter no máximo 2000")
+    else:
         return notas.adicionar(anotacao)
-    except ValidationError:
-        return ValidationError(status=402, detail="Tamanho máximo da anotação excedido")
 
 
 @app.get("/obter-nota/{id: UUID}", tags=['Pesquisar Notas'])
@@ -37,7 +38,6 @@ def obter_uma_nota(id: UUID) -> Nota:
     """
     View que mostra uma nota a partir de seu UUID
     """
-    print(type(notas.nota(id)))
     if notas.existe(id):
         return notas.nota(id)
     else:
