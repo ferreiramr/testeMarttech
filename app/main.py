@@ -6,7 +6,8 @@ from app.nota import Nota
 
 app = FastAPI(
     title="Teste Martech - Marcos Ferreira",
-    description="Teste do processo seletivo para a vaga de desenvolvedor Python. O escopo do projeto consiste em crir um bloco de anotações utilizando biblioteca FastAPI na AWS Lambada gerenciada pelo AWS API Gateway"
+    description="Teste do processo seletivo para a vaga de desenvolvedor Python. O escopo do projeto consiste em crir um bloco de anotações utilizando biblioteca FastAPI na AWS Lambada gerenciada pelo AWS API Gateway",
+    version="1.0"
 )
 
 notas = Notas()

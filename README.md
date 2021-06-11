@@ -58,10 +58,14 @@ O escopo do projeto consiste em crir um bloco de anotações utilizando bibliote
 
 Para utilizar de maneira mais efetiva a FastAPI é necessários estudar mais os seguintes tópicos:
 
-- [pydantic - frameowork para gerenciar validação de dados utilizando annotations](https://pydantic-docs.helpmanual.io/)
+- [pydantic - Frameowork para gerenciar validação de dados utilizando annotations](https://pydantic-docs.helpmanual.io/)
 
-- [typing - biblioteca para realizar checagem de tipos](https://docs.python.org/3/library/typing.html)
+- [typing - Biblioteca para realizar checagem de tipos](https://docs.python.org/3/library/typing.html)
 
-- [Starlette - frameowork base da FastAPI](https://pydantic-docs.helpmanual.io/)
+- [Starlette - Frameowork base da FastAPI](https://pydantic-docs.helpmanual.io/)
 
-- [pytest - framework para testes](https://docs.pytest.org/)
+- [pytest - Framework para testes](https://docs.pytest.org/)
+
+- [Swagger - Framework para documentação de APIs utilizada pela FastAPI](https://swagger.io/)
+
+- [OpemAPI - Iniciativa que padroniza boas práticas no desenvolvimento de APIs](https://www.openapis.org/)
