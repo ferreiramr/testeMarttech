@@ -20,7 +20,7 @@ class Notas():
     def excluir(self, id: UUID) -> Optional[Nota]:
         return self.notas.pop(id, None)
 
-    def excluir_todas(self)->Dict[None, None]:
+    def excluir_todas(self) -> Dict[None, None]:
         self.notas = {}
 
     def nota(self, id: UUID) -> Optional[Nota]:

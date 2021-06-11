@@ -1,8 +1,6 @@
-from pyexpat import ErrorString
 from typing import Dict, Text
 from uuid import UUID
-from fastapi import FastAPI, HTTPException, status
-from pydantic import Json, ValidationError
+from fastapi import FastAPI, HTTPException
 from app.notas import Notas
 from app.nota import Nota
 
@@ -19,7 +17,7 @@ def descricao_do_projeto():
     return {"Projeto": "Teste Martech",
             "Autor": "Marcos Ferreira",
             "Descriao": "Teste realizado para a vaga de desenvolvedor Python",
-            "Status": "CRUD finalizada com funcionalidades essenciais coberta por testes"}
+            "Status": "CRUD finalizada com funcionalidades essenciais coberta por testes e projeto hospedado na Heroku"}
 
 
 @app.post("/nova-nota/{anotacao: Text}", status_code=201, tags=['Adicionar Nota'])
@@ -27,10 +25,7 @@ def nova_nota(anotacao: Text) -> Nota:
     """
     View que adiciona uma nova nota
     """
-    if len(anotacao) > 2000:
-        return HTTPException(status_code=402, detail="Tamanho máximo da anotação excedido, uma nota pode conter no máximo 2000")
-    else:
-        return notas.adicionar(anotacao)
+    return notas.adicionar(anotacao)
 
 
 @app.get("/obter-nota/{id: UUID}", tags=['Pesquisar Notas'])
@@ -41,7 +36,7 @@ def obter_uma_nota(id: UUID) -> Nota:
     if notas.existe(id):
         return notas.nota(id)
     else:
-        return HTTPException(status_code=404, detail="Nota nao localizada")
+        return HTTPException(status_code=404, detail="Nota não localizada")
 
 
 @app.get("/todas-as-notas", tags=['Pesquisar Notas'])
@@ -60,7 +55,7 @@ def atualizar_uma_nota(id: UUID, nova_anotacao: Text) -> Nota:
     if notas.existe(id):
         return notas.atualizar(id, nova_anotacao)
     else:
-        return HTTPException(status_code=404, detail="Nota nao localizada")
+        return HTTPException(status_code=404, detail="Nota não localizada")
 
 
 @app.delete("/excluir-nota/{id: UUID}", tags=['Excluir Notas'])
@@ -71,10 +66,10 @@ def excluir_uma_nota(id: UUID) -> Nota:
     if notas.existe(id):
         return notas.excluir(id)
     else:
-        return HTTPException(status_code=404, detail="Nota nao localizada")
+        return HTTPException(status_code=404, detail="Nota não localizada")
 
 
-@app.delete("/exluir-todas-as-notas", tags=['Excluir Nota'])
+@app.delete("/exluir-todas-as-notas", tags=['Excluir Notas'])
 def excluir_todas_as_notas() -> Dict[None, None]:
     """
     View que excluir todas as todas as notas
