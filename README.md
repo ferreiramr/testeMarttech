@@ -4,10 +4,18 @@ Projeto desenvolvido como teste do processo seletivo para a vaga de desenvolvedo
 
 O escopo do projeto consiste em crir um bloco de anotações utilizando biblioteca FastAPI na AWS Lambada gerenciada pelo AWS API Gateway.
 
+## SITUAÇÃO DO PROJETO
+
+    - CRUD finalizada com funcionalidades essenciais coberta por testes e projeto com deploy na Heroku e na AWS Lambda.
+    - Na Heroku há uma falha no acesso a variável que armazenas as notas, nos teste locais não foi possível reproduzir o erro, possívelmente persistindo os dados das notas em um banco de dados esta falha seja eliminada.
+    - Não houve tempo hábil para implementar a persistencia das notas no AWS DynamoDB.
+
 ## REFERÊNCIAS
 
 - [Live de Python #113 - FastAPI - Com João Lugão](https://www.youtube.com/watch?v=MxlS5_MI_WY)
 - [FastAPI Documentation](https://fastapi.tiangolo.com/#example)
+- [Simple Serverless FastAPI with AWS Lambda](https://www.youtube.com/watch?v=6fE31084Uks)
+- [Failed to load API definition after hosting the app on AWS](https://github.com/tiangolo/fastapi/issues/2787)
 
 ## TODO
 
@@ -39,15 +47,15 @@ O escopo do projeto consiste em crir um bloco de anotações utilizando bibliote
 
  - [x] Entender as fucionalidades essências do **AWS DinamoDB**
 
- - [ ] Dominar as fucionalidades básicas da **AWS Lambada**
+ - [x] Dominar as fucionalidades básicas da **AWS Lambada**
 
- - [ ] Entender as fucionalidades básicas do **AWS API Gateway**
+ - [x] Entender as fucionalidades básicas do **AWS API Gateway**
 
- - [ ] Entender as fucionalidades básicas do **AWS DinamoDB**
+ - [x] Entender as fucionalidades básicas do **AWS DinamoDB**
 
- - [ ] Realizar o deploy a API na **AWS Lambada**
+ - [x] Realizar o deploy a API na **AWS Lambada** (no ententano occore uma falha ao acessar o Swagger, as outras funcionalidades funcional normalmente)
 
- - [ ] Gerenciar o acesso à API no **AWS API Gateway**
+ - [x] Gerenciar o acesso à API no **AWS API Gateway**
 
  - [ ] Implementar a persistencia das notas no ***AWS  DinamoDB**
 

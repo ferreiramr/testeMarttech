@@ -3,12 +3,14 @@ from uuid import UUID
 from fastapi import FastAPI, HTTPException
 from app.notas import Notas
 from app.nota import Nota
+from mangum import Mangum
 
 app = FastAPI(
     title="Teste Martech - Marcos Ferreira",
     description="Teste do processo seletivo para a vaga de desenvolvedor Python. O escopo do projeto consiste em crir um bloco de anotações utilizando biblioteca FastAPI na AWS Lambada gerenciada pelo AWS API Gateway",
     version="1.0"
 )
+handler = Mangum(app)
 
 notas = Notas()
 
@@ -18,7 +20,9 @@ def descricao_do_projeto():
     return {"Projeto": "Teste Martech",
             "Autor": "Marcos Ferreira",
             "Descriao": "Teste realizado para a vaga de desenvolvedor Python",
-            "Status": "CRUD finalizada com funcionalidades essenciais coberta por testes e projeto hospedado na Heroku"}
+            "Status": "CRUD finalizada com funcionalidades essenciais coberta por testes e projeto com deploy na Heroku e na AWS Lambda",
+            "Falha na Heroku": "Na Heroku há uma falha no acesso a variável que armazenas as notas, nos teste locais não foi possível reproduzir o erro, possívelmente persistindo os dados das notas em um banco de dados esta falha seja eliminada",
+            }
 
 
 @app.post("/nova-nota/{anotacao: Text}", status_code=201, tags=['Adicionar Nota'])
