@@ -59,8 +59,6 @@ O escopo do projeto consiste em crir um bloco de anotações utilizando bibliote
 
  - [ ] Implementar a persistencia das notas no ***AWS  DinamoDB**
 
- *As tarefas que utilizam os serviços da AWS não poderam ser implementas devido à alguma erro em minha conta, a Amazon estipulou um prazo de 24h para o acesso ser permitido.*
-
 
 ## ESTUDOS FUTUROS
 
@@ -76,4 +74,4 @@ Para utilizar de maneira mais efetiva a FastAPI é necessários estudar mais os 
 
 - [Swagger - Framework para documentação de APIs utilizada pela FastAPI](https://swagger.io/)
 
-- [OpemAPI - Iniciativa que padroniza boas práticas no desenvolvimento de APIs](https://www.openapis.org/)
+- [OpenAPI - Iniciativa que padroniza boas práticas no desenvolvimento de APIs](https://www.openapis.org/)
