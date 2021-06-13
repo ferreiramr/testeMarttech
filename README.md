@@ -45,7 +45,7 @@ O escopo do projeto consiste em crir um bloco de anotações utilizando bibliote
 
  - [ ] Entender as fucionalidades básicas do **AWS DinamoDB**
 
- - [ ] Hospedar a API na **AWS Lambada**
+ - [ ] Realizar o deploy a API na **AWS Lambada**
 
  - [ ] Gerenciar o acesso à API no **AWS API Gateway**
 
